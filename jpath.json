@@ -1,0 +1,22 @@
+{
+    "jsonpaths": [
+        "$['artist']",
+        "$['auth']",
+        "$['firstname']",
+        "$['gender']",
+        "$['iteminsession']",
+        "$['lastname']",
+        "$['lengthen']",
+        "$['level']",
+        "$['location']",
+        "$['methode']",
+        "$['page']",
+        "$['registrations']",
+        "$['sessionid']",
+        "$['song']",
+        "$['status']",
+        "$['ts']",
+        "$['useragent']",
+        "$['userid']"
+    ]
+}

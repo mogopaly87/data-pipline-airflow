@@ -46,7 +46,7 @@ CREATE TABLE public.staging_events (
 	status int4,
 	ts int8,
 	useragent varchar(256),
-	userid int4
+	userid varchar(256)
 );
 
 CREATE TABLE public.staging_songs (
