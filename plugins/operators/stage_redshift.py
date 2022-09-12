@@ -15,8 +15,7 @@ class StageToRedshiftOperator(BaseOperator):
         FROM '{}'
         ACCESS_KEY_ID '{}'
         SECRET_ACCESS_KEY '{}'
-        IGNOREHEADER {}
-        json 's3://udacity-dend2-mogo/jsonpaths/jpath.json'
+        json '{}'
     """
 
     @apply_defaults
@@ -26,7 +25,7 @@ class StageToRedshiftOperator(BaseOperator):
                 table="",
                 s3_bucket="",
                 s3_key="",
-                ignore_headers=1,
+                jsonpaths="",
                  *args, **kwargs):
 
         super(StageToRedshiftOperator, self).__init__(*args, **kwargs)
@@ -35,7 +34,7 @@ class StageToRedshiftOperator(BaseOperator):
         self.table = table
         self.s3_bucket = s3_bucket
         self.s3_key = s3_key
-        self.ignore_headers = ignore_headers
+        self.jsonpaths = jsonpaths
 
     def execute(self, context):
         aws_hook = AwsHook(self.aws_credentials_id)
@@ -46,13 +45,14 @@ class StageToRedshiftOperator(BaseOperator):
         redshift.run("DELETE FROM {}".format(self.table))
         
         self.log.info("Copying data from S3 to Redshift")
-        s3_path = "s3://{}/{}".format(self.s3_bucket, self.s3_key)
+        s3_path = "s3://{}/{}/".format(self.s3_bucket, self.s3_key)
+        print("S3 path >>>", s3_path)
         formatted_sql = StageToRedshiftOperator.copy_sql.format(
             self.table,
             s3_path,
             credentials.access_key,
             credentials.secret_key,
-            self.ignore_headers,
+            self.jsonpaths
         )
         print("printing formatted sql >>>> ",formatted_sql)
         redshift.run(formatted_sql)

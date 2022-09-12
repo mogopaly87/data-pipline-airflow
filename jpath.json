@@ -2,21 +2,21 @@
     "jsonpaths": [
         "$['artist']",
         "$['auth']",
-        "$['firstname']",
+        "$['firstName']",
         "$['gender']",
-        "$['iteminsession']",
-        "$['lastname']",
-        "$['lengthen']",
+        "$['itemInSession']",
+        "$['lastName']",
+        "$['length']",
         "$['level']",
         "$['location']",
-        "$['methode']",
+        "$['method']",
         "$['page']",
-        "$['registrations']",
-        "$['sessionid']",
+        "$['registration']",
+        "$['sessionId']",
         "$['song']",
         "$['status']",
         "$['ts']",
-        "$['useragent']",
-        "$['userid']"
+        "$['userAgent']",
+        "$['userId']"
     ]
 }
