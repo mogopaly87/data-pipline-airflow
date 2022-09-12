@@ -8,6 +8,7 @@ from airflow.operators.dummy_operator import DummyOperator
 # from plugins.operators import StageToRedshiftOperator
 from operators.stage_redshift import StageToRedshiftOperator
 from operators.load_fact import LoadFactOperator
+from operators.load_dimension import LoadDimensionOperator
 from helpers.sql_queries import SqlQueries
 
 # AWS_KEY = os.environ.get('AWS_KEY')
@@ -56,31 +57,39 @@ with DAG(
         table="songplays"
     )
 
-    # load_user_dimension_table = LoadDimensionOperator(
-    #     task_id='Load_user_dim_table',
-    #     dag=dag
-    # )
+    load_user_dimension_table = LoadDimensionOperator(
+        task_id='Load_user_dim_table',
+        redshift_conn_id="redshift",
+        table="users"
+    )
 
-    # load_song_dimension_table = LoadDimensionOperator(
-    #     task_id='Load_song_dim_table',
-    #     dag=dag
-    # )
+    load_song_dimension_table = LoadDimensionOperator(
+        task_id='Load_song_dim_table',
+        redshift_conn_id="redshift",
+        table="songs"
+    )
 
-    # load_artist_dimension_table = LoadDimensionOperator(
-    #     task_id='Load_artist_dim_table',
-    #     dag=dag
-    # )
+    load_artist_dimension_table = LoadDimensionOperator(
+        task_id='Load_artist_dim_table',
+        redshift_conn_id="redshift",
+        table="artists"
+    )
 
-    # load_time_dimension_table = LoadDimensionOperator(
-    #     task_id='Load_time_dim_table',
-    #     dag=dag
-    # )
+    load_time_dimension_table = LoadDimensionOperator(
+        task_id='Load_time_dim_table',
+        redshift_conn_id="redshift",
+        table="time"
+    )
 
     # run_quality_checks = DataQualityOperator(
     #     task_id='Run_data_quality_checks',
-    #     dag=dag
+        
     # )
 
     end_operator = DummyOperator(task_id='Stop_execution',  dag=dag)
 
-start_operator >> [stage_songs_to_redshift, stage_events_to_redshift] >> load_songplays_table>> end_operator
+start_operator >> [stage_songs_to_redshift, 
+                    stage_events_to_redshift] >> load_songplays_table >> [load_user_dimension_table,
+                                                                            load_song_dimension_table,
+                                                                            load_artist_dimension_table,
+                                                                            load_time_dimension_table] >> end_operator

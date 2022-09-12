@@ -30,7 +30,7 @@ class LoadFactOperator(BaseOperator):
         self.table = table
 
     
-    @apply_defaults
+    
     def execute(self, context):
         redshift = PostgresHook(postgres_conn_id=self.redshift_conn_id)
         print("Deleting all rows from the {} table".format(self.table))
