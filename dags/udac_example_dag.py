@@ -9,6 +9,7 @@ from airflow.operators.dummy_operator import DummyOperator
 from operators.stage_redshift import StageToRedshiftOperator
 from operators.load_fact import LoadFactOperator
 from operators.load_dimension import LoadDimensionOperator
+from operators.data_quality import DataQualityOperator
 from helpers.sql_queries import SqlQueries
 
 # AWS_KEY = os.environ.get('AWS_KEY')
@@ -81,15 +82,18 @@ with DAG(
         table="time"
     )
 
-    # run_quality_checks = DataQualityOperator(
-    #     task_id='Run_data_quality_checks',
-        
-    # )
+    run_quality_checks = DataQualityOperator(
+        task_id='Run_data_quality_checks',
+        redshift_conn_id="redshift",
+        target_table=["users", "songs", "artists", "time", "songplays"]
+    )
 
     end_operator = DummyOperator(task_id='Stop_execution',  dag=dag)
 
-start_operator >> [stage_songs_to_redshift, 
-                    stage_events_to_redshift] >> load_songplays_table >> [load_user_dimension_table,
-                                                                            load_song_dimension_table,
-                                                                            load_artist_dimension_table,
-                                                                            load_time_dimension_table] >> end_operator
+start_operator >> [stage_songs_to_redshift, stage_events_to_redshift] >> load_songplays_table 
+
+load_songplays_table >> [load_user_dimension_table,
+                        load_song_dimension_table,
+                        load_artist_dimension_table,
+                        load_time_dimension_table] >> run_quality_checks
+run_quality_checks >> end_operator

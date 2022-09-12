@@ -40,3 +40,64 @@ class SqlQueries:
                extract(month from start_time), extract(year from start_time), extract(dayofweek from start_time)
         FROM songplays
     """)
+    
+    # Data Quality Check
+    # ----------------------------------------------------------------
+    
+    songplays_check_nulls = ("""
+        SELECT COUNT(*)
+        FROM songplays
+        WHERE   playid IS NULL OR
+                start_time IS NULL OR
+                userid IS NULL;
+    """)
+
+    users_check_nulls = ("""
+        SELECT COUNT(*)
+        FROM users
+        WHERE userid IS NULL;
+    """)
+
+    songs_check_nulls = ("""
+        SELECT COUNT(*)
+        FROM songs
+        WHERE songid IS NULL;
+    """)
+
+    artists_check_nulls = ("""
+        SELECT COUNT(*)
+        FROM artists
+        WHERE artistid IS NULL;
+    """)
+
+    time_check_nulls = ("""
+        SELECT COUNT(*)
+        FROM time
+        WHERE start_time IS NULL;
+    """)
+
+    # Data quality check queries:
+    songplays_check_count = ("""
+        SELECT COUNT(*)
+        FROM songplays;
+    """)
+
+    users_check_count = ("""
+        SELECT COUNT(*)
+        FROM users;
+    """)
+
+    songs_check_count = ("""
+        SELECT COUNT(*)
+        FROM songs;
+    """)
+
+    artists_check_count = ("""
+        SELECT COUNT(*)
+        FROM artists;
+    """)
+
+    time_check_count = ("""
+        SELECT COUNT(*)
+        FROM time;
+    """)
