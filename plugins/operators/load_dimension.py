@@ -6,6 +6,13 @@ from helpers.sql_queries import  SqlQueries
 
 class LoadDimensionOperator(BaseOperator):
 
+    """Loads a dimension tables
+    
+    Depending on the table passed to this object, load the corresponding
+    dimension table.
+    
+    """
+    
     ui_color = '#80BD9E'
     insert_sql = None
     select_statment = None

@@ -4,13 +4,11 @@ from airflow.utils.decorators import apply_defaults
 from helpers.sql_queries import  SqlQueries
 
 class LoadFactOperator(BaseOperator):
-    """_summary_\n
+    """Loads fact table
+    
     Operator to perform an INSERT operation into the songplays table 
     from a SELECT/JOIN operation between the staging_events and staging_songs
     table.
-
-    Args:
-        BaseOperator (_type_): _description_
     """
 
     ui_color = '#F98866'

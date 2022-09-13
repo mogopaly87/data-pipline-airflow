@@ -4,7 +4,8 @@ from airflow.utils.decorators import apply_defaults
 from airflow.contrib.hooks.aws_hook import AwsHook
 
 class StageToRedshiftOperator(BaseOperator):
-    """
+    """Load staging data from S3 to staging tables in Redshift.
+    
     Operator to perform copy operations for any json file from
     S3 to RedShift
     """

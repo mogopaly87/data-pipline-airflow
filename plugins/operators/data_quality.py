@@ -5,6 +5,14 @@ from helpers.sql_queries import  SqlQueries
 
 class DataQualityOperator(BaseOperator):
 
+    """Check data quality
+    
+    Checks to confirm that each table returns at least one row of data. 
+    Also checks to confirm that each table does not contain NULL values. 
+
+    Raises:
+        ValueError: Raised if no data was returned
+    """
     ui_color = '#89DA59'
     insert_sql = None
     
