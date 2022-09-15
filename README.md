@@ -22,6 +22,8 @@ Transformation, and Loading.
     </li>
 </ul>
 <br>
+</p>
+<p>
 # Create Tables
 <ul>
     <li>
@@ -35,5 +37,6 @@ Transformation, and Loading.
     </li>
 </ul>
 <br>
+</p>
 # Load Staging Table
 </p>
