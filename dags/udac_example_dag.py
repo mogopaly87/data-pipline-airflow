@@ -36,10 +36,10 @@ with DAG(
         dag=dag,
         redshift_conn_id="redshift",
         aws_credentials_id="aws_credentials",
-        s3_bucket="udacity-dend2-mogo",
+        s3_bucket="udacity-dend",
         s3_key="log_data",
         table="staging_events",
-        jsonpaths='s3://udacity-dend2-mogo/jsonpaths/jpath.json'
+        jsonpaths='s3://udacity-dend/jsonpaths/jpath.json'
     )
 
     stage_songs_to_redshift = StageToRedshiftOperator(
@@ -49,7 +49,7 @@ with DAG(
         s3_bucket="udacity-dend2-mogo",
         s3_key="song_data",
         table="staging_songs",
-        jsonpaths='s3://udacity-dend2-mogo/jsonpaths/jsonpath_songs.json'
+        jsonpaths='s3://udacity-dend/jsonpaths/jsonpath_songs.json'
     )
 
     load_songplays_table = LoadFactOperator(

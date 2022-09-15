@@ -47,3 +47,17 @@ Sparkify analytics database (called here sparkifydb) schema has a star design. S
     </li>
 </ul>
 </p>
+
+<h4>Run ETL Pipeline</h4>
+<p>The second DAG executes the following steps:</p>
+<ul>
+    <li>
+    Copy source data from S3 to staging tables
+    </li>
+    <li>
+    Transform data from staging tables  to fact and dimension tables.
+    </li>
+    <li>
+    Run data quality checks to ensure all data in fact and dimension tables meeet requirement.
+    </li>
+</ul>
