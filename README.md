@@ -1,14 +1,16 @@
-<h3>PURPOSE</h3>
-<br>
+<h3>Purpose</h3>
 <p>
 The pupose of this application is to deliver data from an S3 bucket to fact and dimensional tables
 in Redshift data warehouse through a data pipeline using Apache Airflow to schedule batch Extractions,
 Transformation, and Loading.
 </p>
-<br>
 
-<h3>SETUP</h3>
-<br>
+<h3>About Database</h3>
+<p>
+Sparkify analytics database (called here sparkifydb) schema has a star design. Start design means that it has one Fact Table having business data, and supporting Dimension Tables. Star DB design is maybe the most common schema used in ETL pipelines since it separates Dimension data into their own tables in a clean way and collects business critical data into the Fact table allowing flexible queries. The Fact Table answers one of the key questions: what songs users are listening to
+</p>
+![The schema](/schema.png)
+<h3>Setup</h3>
 <p>
 # Setup Json Path
 <ul>
@@ -36,9 +38,4 @@ Transformation, and Loading.
     This will create ALL required tables in AWS Redshift
     </li>
 </ul>
-</p>
-
-<p>
-# Load Staging Table
-
 </p>
