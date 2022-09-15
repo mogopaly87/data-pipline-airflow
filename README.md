@@ -9,7 +9,7 @@ Transformation, and Loading.
 <p>
 Sparkify analytics database (called here sparkifydb) schema has a star design. Start design means that it has one Fact Table having business data, and supporting Dimension Tables. Star DB design is maybe the most common schema used in ETL pipelines since it separates Dimension data into their own tables in a clean way and collects business critical data into the Fact table allowing flexible queries. The Fact Table answers one of the key questions: what songs users are listening to
 </p>
-![The schema](schema.png)
+<img src="schema.png">
 
 <h3>Setup</h3>
 <p>
