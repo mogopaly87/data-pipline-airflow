@@ -7,11 +7,18 @@ Transformation, and Loading.
 
 <h3>About Database</h3>
 <p>
-Sparkify analytics database (called here sparkifydb) schema has a star design. Start design means that it has one Fact Table having business data, and supporting Dimension Tables. Star DB design is maybe the most common schema used in ETL pipelines since it separates Dimension data into their own tables in a clean way and collects business critical data into the Fact table allowing flexible queries. The Fact Table answers one of the key questions: what songs users are listening to
+Sparkify analytics database (called here sparkifydb) schema has a star design. Start design means that it has one Fact Table having business data, and supporting Dimension Tables. Star DB design is maybe the most common schema used in ETL pipelines since it separates Dimension data into their own tables in a clean way and collects business critical data into the Fact table allowing flexible queries. The Fact Table answers one of the key questions: what songs users are listening to. DB schema is the following:
 </p>
 <img src="schema.png">
 
-<h3>Setup</h3>
+<h3>HOW TO USE</h3>
+<p><strong>The project has two DAGs:</strong></p>
+<ul>
+    <li><strong>create_table</strong>dag: This DAG uses the 'create_tables.sql' file to
+    create the required tables.</li>
+    <li><strong>udac_example_dag:</strong> This DAG uses data in s3:/udacity-dend/song_data and s3:/udacity-dend/log_data, processes it, and inserts the processed data into AWS Redshift DB. </li>
+</ul>
+<h4>Setup</h4>
 <p>
 # Setup Json Path
 <ul>
