@@ -21,8 +21,8 @@ Transformation, and Loading.
     <strong>jsonpaths</strong>
     </li>
 </ul>
-<br>
 </p>
+
 <p>
 # Create Tables
 <ul>
@@ -36,7 +36,9 @@ Transformation, and Loading.
     This will create ALL required tables in AWS Redshift
     </li>
 </ul>
-<br>
 </p>
+
+<p>
 # Load Staging Table
+
 </p>
