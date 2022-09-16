@@ -1,1 +1,2 @@
-linguist-language=Python
+*.1 linguist-language=text
+*.log linguist-language=text
